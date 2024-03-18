@@ -8,10 +8,14 @@ from ui_elements import UIManager
 def run_game():
     pygame.init()
     # Width and height of the window
-    screen = pygame.display.set_mode((Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT), pygame.RESIZABLE)
+    screen = pygame.display.set_mode(
+        (Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT), pygame.RESIZABLE
+    )
     pygame.display.set_caption("Bouncing Balls Entertainment Program")
     clock = pygame.time.Clock()
     game_state = GameState()
+    print()
+    print(game_state.ball_count)
 
     # Variables to keep track of game info
     balls = create_balls(screen, game_state)
@@ -28,7 +32,9 @@ def run_game():
                 mouse_pos = event.pos
                 # print("mouse button down")
                 for ball in balls:
-                    if (ball.position[0] - mouse_pos[0]) ** 2 + (ball.position[1] - mouse_pos[1]) ** 2 < ball.radius ** 2:
+                    if (ball.position[0] - mouse_pos[0]) ** 2 + (
+                        ball.position[1] - mouse_pos[1]
+                    ) ** 2 < ball.radius**2:
                         ball.isSelected = True
                         # print("ball selected")
                         ball.radius = 20
@@ -61,5 +67,5 @@ def run_game():
     pygame.quit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_game()
